@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { ServersPage } from "@/features/dr/dashboard-ui";
+export const Route=createFileRoute("/servers")({head:()=>({meta:[{title:"DR Servers | DR Control"},{name:"description",content:"Manage and inspect disaster recovery servers, health, and validation status."},{property:"og:title",content:"DR Servers | DR Control"},{property:"og:description",content:"Manage and inspect disaster recovery servers, health, and validation status."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}),component:ServersPage});

@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { TestRunsPage } from "@/features/dr/dashboard-ui";
+export const Route=createFileRoute("/test-runs")({head:()=>({meta:[{title:"Active Test Runs | DR Control"},{name:"description",content:"Monitor and cancel active simulated disaster recovery validation runs."},{property:"og:title",content:"Active Test Runs | DR Control"},{property:"og:description",content:"Monitor and cancel active simulated disaster recovery validation runs."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}),component:TestRunsPage});

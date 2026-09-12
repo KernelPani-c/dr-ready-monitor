@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { ReportsPage } from "@/features/dr/dashboard-ui";
+export const Route=createFileRoute("/reports")({head:()=>({meta:[{title:"DR Readiness Reports | DR Control"},{name:"description",content:"Analyze disaster recovery readiness, server health, and validation trends."},{property:"og:title",content:"DR Readiness Reports | DR Control"},{property:"og:description",content:"Analyze disaster recovery readiness, server health, and validation trends."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}),component:ReportsPage});
