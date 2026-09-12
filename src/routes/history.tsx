@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { HistoryPage } from "@/features/dr/dashboard-ui";
+export const Route=createFileRoute("/history")({head:()=>({meta:[{title:"Test History | DR Control"},{name:"description",content:"Review filterable disaster recovery test history and detailed outcomes."},{property:"og:title",content:"Test History | DR Control"},{property:"og:description",content:"Review filterable disaster recovery test history and detailed outcomes."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}),component:HistoryPage});

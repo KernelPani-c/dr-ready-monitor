@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { SettingsPage } from "@/features/dr/dashboard-ui";
+export const Route=createFileRoute("/settings")({head:()=>({meta:[{title:"Settings | DR Control"},{name:"description",content:"Configure dashboard refresh, test defaults, notifications, and appearance."},{property:"og:title",content:"Settings | DR Control"},{property:"og:description",content:"Configure dashboard refresh, test defaults, notifications, and appearance."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}),component:SettingsPage});
