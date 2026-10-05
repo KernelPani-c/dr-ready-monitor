@@ -73,7 +73,7 @@ export function ServersPage(){const [version,setVersion]=useState(0);const [addi
 
 /** Add Server form: validates name + IP/hostname, then saves via addServer(). */
 function AddServerModal({open,onClose,onAdded}:{open:boolean;onClose:()=>void;onAdded:()=>void}){
- const [name,setName]=useState("");const [host,setHost]=useState("");const [desc,setDesc]=useState("");const [err,setErr]=useState<Record<string,string>>({});
+ const [name,setName]=useState("");const [host,setHost]=useState("");const [desc,setDesc]=useState("");const [err,setErr]=useState<{name?:string;host?:string;desc?:string}>({});
  const reset=()=>{setName("");setHost("");setDesc("");setErr({});onClose()};
  const submit=(e:React.FormEvent)=>{e.preventDefault();const n:{name?:string;host?:string;desc?:string}={};
   if(!name.trim())n.name="Server name is required";else if(name.trim().length>60)n.name="Max 60 characters";else if(servers.some(s=>s.name.toLowerCase()===name.trim().toLowerCase()))n.name="A server with this name already exists";

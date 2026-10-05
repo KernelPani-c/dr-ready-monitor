@@ -1,6 +1,6 @@
 export type ServerStatus = "ONLINE" | "OFFLINE" | "WARNING" | "MAINTENANCE";
 export type Result = "PASSED" | "FAILED" | "WARNING" | "TIMEOUT" | "CONNECTION ERROR" | "RUNNING" | "CANCELLED";
-export type Server = { id:string; name:string; hostname:string; ip:string; environment:string; group:string; os:string; status:ServerStatus; cpu:number; memory:number; disk:number; lastTest:string; result:Result; uptime:string; description?:string };
+export type Server = { id:string; name:string; hostname:string; ip:string; environment:string; group:string; os:string; status:ServerStatus; cpu:number; memory:number; disk:number; lastTest:string; result:Result; uptime:string; description?:string|undefined };
 export type TestDef = { id:string; name:string; category:string; description:string; expected:string; timeout:number; status:"ACTIVE"|"DISABLED" };
 export type Run = { id:string; serverId:string; testId:string; progress:number; result:Result; started:string; duration:string; user:string; currentStep?:string };
 
