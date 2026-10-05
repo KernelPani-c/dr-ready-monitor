@@ -12,9 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuditLogsRouteImport } from './routes/audit-logs'
 import { Route as HistoryRouteImport } from './routes/history'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as ServersRouteImport } from './routes/servers'
 import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as TestRunsRouteImport } from './routes/test-runs'
 import { Route as TestsRouteImport } from './routes/tests'
 import { Route as ServersServerIdRouteImport } from './routes/servers.$serverId'
@@ -34,6 +36,11 @@ const HistoryRoute = HistoryRouteImport.update({
   path: '/history',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReportsRoute = ReportsRouteImport.update({
   id: '/reports',
   path: '/reports',
@@ -47,6 +54,11 @@ const ServersRoute = ServersRouteImport.update({
 const SettingsRoute = SettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TestRunsRoute = TestRunsRouteImport.update({
@@ -69,9 +81,11 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/audit-logs': typeof AuditLogsRoute
   '/history': typeof HistoryRoute
+  '/login': typeof LoginRoute
   '/reports': typeof ReportsRoute
   '/servers': typeof ServersRouteWithChildren
   '/settings': typeof SettingsRoute
+  '/signup': typeof SignupRoute
   '/test-runs': typeof TestRunsRoute
   '/tests': typeof TestsRoute
   '/servers/$serverId': typeof ServersServerIdRoute
@@ -80,9 +94,11 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/audit-logs': typeof AuditLogsRoute
   '/history': typeof HistoryRoute
+  '/login': typeof LoginRoute
   '/reports': typeof ReportsRoute
   '/servers': typeof ServersRouteWithChildren
   '/settings': typeof SettingsRoute
+  '/signup': typeof SignupRoute
   '/test-runs': typeof TestRunsRoute
   '/tests': typeof TestsRoute
   '/servers/$serverId': typeof ServersServerIdRoute
@@ -92,9 +108,11 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/audit-logs': typeof AuditLogsRoute
   '/history': typeof HistoryRoute
+  '/login': typeof LoginRoute
   '/reports': typeof ReportsRoute
   '/servers': typeof ServersRouteWithChildren
   '/settings': typeof SettingsRoute
+  '/signup': typeof SignupRoute
   '/test-runs': typeof TestRunsRoute
   '/tests': typeof TestsRoute
   '/servers/$serverId': typeof ServersServerIdRoute
@@ -105,9 +123,11 @@ export interface FileRouteTypes {
     | '/'
     | '/audit-logs'
     | '/history'
+    | '/login'
     | '/reports'
     | '/servers'
     | '/settings'
+    | '/signup'
     | '/test-runs'
     | '/tests'
     | '/servers/$serverId'
@@ -116,9 +136,11 @@ export interface FileRouteTypes {
     | '/'
     | '/audit-logs'
     | '/history'
+    | '/login'
     | '/reports'
     | '/servers'
     | '/settings'
+    | '/signup'
     | '/test-runs'
     | '/tests'
     | '/servers/$serverId'
@@ -127,9 +149,11 @@ export interface FileRouteTypes {
     | '/'
     | '/audit-logs'
     | '/history'
+    | '/login'
     | '/reports'
     | '/servers'
     | '/settings'
+    | '/signup'
     | '/test-runs'
     | '/tests'
     | '/servers/$serverId'
@@ -139,9 +163,11 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuditLogsRoute: typeof AuditLogsRoute
   HistoryRoute: typeof HistoryRoute
+  LoginRoute: typeof LoginRoute
   ReportsRoute: typeof ReportsRoute
   ServersRoute: typeof ServersRouteWithChildren
   SettingsRoute: typeof SettingsRoute
+  SignupRoute: typeof SignupRoute
   TestRunsRoute: typeof TestRunsRoute
   TestsRoute: typeof TestsRoute
 }
@@ -169,6 +195,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HistoryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reports': {
       id: '/reports'
       path: '/reports'
@@ -188,6 +221,13 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/test-runs': {
@@ -229,9 +269,11 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuditLogsRoute: AuditLogsRoute,
   HistoryRoute: HistoryRoute,
+  LoginRoute: LoginRoute,
   ReportsRoute: ReportsRoute,
   ServersRoute: ServersRouteWithChildren,
   SettingsRoute: SettingsRoute,
+  SignupRoute: SignupRoute,
   TestRunsRoute: TestRunsRoute,
   TestsRoute: TestsRoute,
 }
