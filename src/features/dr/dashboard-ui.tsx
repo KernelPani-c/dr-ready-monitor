@@ -75,7 +75,7 @@ export function ServersPage(){const [version,setVersion]=useState(0);const [addi
 function AddServerModal({open,onClose,onAdded}:{open:boolean;onClose:()=>void;onAdded:()=>void}){
  const [name,setName]=useState("");const [host,setHost]=useState("");const [desc,setDesc]=useState("");const [err,setErr]=useState<Record<string,string>>({});
  const reset=()=>{setName("");setHost("");setDesc("");setErr({});onClose()};
- const submit=(e:React.FormEvent)=>{e.preventDefault();const n:Record<string,string>={};
+ const submit=(e:React.FormEvent)=>{e.preventDefault();const n:{name?:string;host?:string;desc?:string}={};
   if(!name.trim())n.name="Server name is required";else if(name.trim().length>60)n.name="Max 60 characters";else if(servers.some(s=>s.name.toLowerCase()===name.trim().toLowerCase()))n.name="A server with this name already exists";
   const ip=/^((25[0-5]|2[0-4]\d|1?\d?\d)\.){3}(25[0-5]|2[0-4]\d|1?\d?\d)$/;const hostRe=/^[a-zA-Z0-9]([a-zA-Z0-9-]{0,62})(\.[a-zA-Z0-9-]{1,63})*$/;
   if(!host.trim())n.host="IP address or hostname is required";else if(!ip.test(host.trim())&&(/^[\d.]+$/.test(host.trim())||!hostRe.test(host.trim())))n.host="Enter a valid IP address or hostname";

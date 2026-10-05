@@ -23,7 +23,7 @@ function AuthCard({ title, sub, children }: { title: string; sub: string; childr
   );
 }
 
-function Field({ label, error, ...props }: { label: string; error?: string } & React.ComponentProps<"input">) {
+function Field({ label, error, ...props }: { label: string; error?: string | undefined } & React.ComponentProps<"input">) {
   return (
     <label className="block space-y-1 text-sm">
       <span className="font-medium">{label}</span>
@@ -43,7 +43,7 @@ const signupSchema = z.object({
 export function SignupPage() {
   const navigate = useNavigate();
   const [f, setF] = useState({ name: "", email: "", password: "", confirm: "" });
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<Partial<Record<"name"|"email"|"password"|"confirm"|"form", string>>>({});
   const [busy, setBusy] = useState(false);
   const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement>) => setF({ ...f, [k]: e.target.value });
 
