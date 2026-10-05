@@ -1,6 +1,6 @@
 export type ServerStatus = "ONLINE" | "OFFLINE" | "WARNING" | "MAINTENANCE";
 export type Result = "PASSED" | "FAILED" | "WARNING" | "TIMEOUT" | "CONNECTION ERROR" | "RUNNING" | "CANCELLED";
-export type Server = { id:string; name:string; hostname:string; ip:string; environment:string; group:string; os:string; status:ServerStatus; cpu:number; memory:number; disk:number; lastTest:string; result:Result; uptime:string };
+export type Server = { id:string; name:string; hostname:string; ip:string; environment:string; group:string; os:string; status:ServerStatus; cpu:number; memory:number; disk:number; lastTest:string; result:Result; uptime:string; description?:string };
 export type TestDef = { id:string; name:string; category:string; description:string; expected:string; timeout:number; status:"ACTIVE"|"DISABLED" };
 export type Run = { id:string; serverId:string; testId:string; progress:number; result:Result; started:string; duration:string; user:string; currentStep?:string };
 
@@ -55,4 +55,18 @@ export const mockApi={
  async startTest(serverId:string,testId:string){await wait(300); return {id:`EX-${8422+Math.floor(Math.random()*80)}`,serverId,testId,progress:0,result:"RUNNING" as Result,started:new Date().toLocaleTimeString([], {hour12:false}),duration:"00:00:00",user:"admin",currentStep:"Initializing"}},
 };
 export const serverById=(id:string)=>servers.find(s=>s.id===id);
+
+/* ---------- Server management (persisted in localStorage) ----------
+ * The `servers` array is updated in place so every page sees the same list.
+ * Later, replace these with calls to the Node.js API. */
+const SERVERS_KEY="dr-servers";
+const saveServers=()=>localStorage.setItem(SERVERS_KEY,JSON.stringify(servers));
+/** Load saved servers once in the browser (falls back to the demo list). */
+export function loadServers(){try{const raw=localStorage.getItem(SERVERS_KEY);if(raw){servers.splice(0,servers.length,...JSON.parse(raw));}}catch{/* keep demo data */}}
+export function addServer(input:{name:string;host:string;description?:string}):Server{
+ const isIp=/^\d{1,3}(\.\d{1,3}){3}$/.test(input.host);
+ const s:Server={id:crypto.randomUUID(),name:input.name.trim(),hostname:isIp?"—":input.host.trim(),ip:isIp?input.host.trim():"—",description:input.description?.trim()||undefined,environment:"Production DR",group:"Custom",os:"Unknown",status:"ONLINE",cpu:0,memory:0,disk:0,lastTest:"Never",result:"PASSED",uptime:"—"};
+ servers.push(s);saveServers();return s;
+}
+export function deleteServer(id:string){const i=servers.findIndex(s=>s.id===id);if(i>=0){servers.splice(i,1);saveServers();}}
 export const testById=(id:string)=>tests.find(t=>t.id===id);
